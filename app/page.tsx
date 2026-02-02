@@ -11,7 +11,7 @@ export default function Home() {
       <nav className="max-w-7xl mx-auto px-8 py-8 flex justify-between items-center border-b border-white/5">
         <div className="flex items-center space-x-3">
           <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center font-black text-white">T</div>
-          <span className="text-xl font-black tracking-tighter uppercase italic">TICK._</span>
+          <span className="text-xl font-black tracking-tighter uppercase italic text-white">TICK._</span>
         </div>
         <button className="bg-white text-black px-6 py-2 rounded-full font-bold text-xs hover:bg-zinc-200 transition">LAUNCH_BETA</button>
       </nav>
@@ -19,7 +19,7 @@ export default function Home() {
       {/* Hero */}
       <div className="max-w-6xl mx-auto px-8 pt-24 pb-32 text-center lg:text-left grid lg:grid-cols-2 gap-16 items-center">
         <div className="space-y-8">
-          <h1 className="text-6xl md:text-8xl font-black leading-[0.9] tracking-tighter uppercase italic">
+          <h1 className="text-6xl md:text-8xl font-black leading-[0.9] tracking-tighter uppercase italic text-white">
             MASTER<br />YOUR<br /><span className="text-blue-600">TIME.</span>
           </h1>
           <p className="text-xl text-zinc-500 max-w-md leading-relaxed">
@@ -34,19 +34,19 @@ export default function Home() {
         <div className="relative mx-auto">
           <div className="w-[280px] h-[580px] bg-black border-[10px] border-zinc-900 rounded-[3rem] p-6 shadow-2xl relative z-10">
             <div className="w-12 h-1 bg-zinc-800 mx-auto rounded-full mb-10"></div>
-            <div className="bg-zinc-950 border border-blue-500/20 p-5 rounded-2xl mb-4">
+            <div className="bg-zinc-950 border border-blue-500/20 p-5 rounded-2xl mb-4 text-left">
               <p className="text-[10px] text-blue-500 font-mono mb-2 uppercase tracking-widest">Active Task</p>
               <p className="font-bold text-white italic">Deploy to Store</p>
             </div>
             <div className="bg-blue-600 p-4 rounded-xl text-center">
-              <p className="text-white font-black text-xs">+100 XP</p>
+              <p className="text-white font-black text-xs uppercase tracking-tighter">+100 XP</p>
             </div>
           </div>
           <div className="absolute -inset-10 bg-blue-600/10 blur-[80px] rounded-full"></div>
         </div>
       </div>
 
-      {/* Özellikler - Alt fonksiyonu sildik, doğrudan buraya yazdık */}
+      {/* Özellikler */}
       <div className="max-w-7xl mx-auto px-8 grid md:grid-cols-3 gap-8 pb-32">
         <div className="p-10 rounded-3xl bg-zinc-950 border border-white/5">
           <Cpu className="text-blue-500 mb-6" size={24} />
