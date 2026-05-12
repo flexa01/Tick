@@ -36,32 +36,69 @@ body::before{
 canvas{position:fixed;inset:0;pointer-events:none;z-index:2;}
 
 /* ── FOTOĞRAFLAR ── */
-.photo{
+.photo-orbit{
   position:fixed;
-  width:160px;height:200px;
-  border-radius:20px;
+  z-index:6;
+}
+
+.photo-frame{
+  width:100%;
+  height:100%;
   overflow:hidden;
-  z-index:5;
-  background:rgba(255,255,255,.08);
+  border-radius:18px;
+  position:relative;
+  backdrop-filter:blur(10px);
   border:1.5px solid rgba(255,255,255,.18);
-  backdrop-filter:blur(8px);
-  box-shadow:0 10px 40px rgba(0,0,0,.5), 0 0 20px rgba(255,90,140,.2);
+  box-shadow:
+    0 10px 40px rgba(0,0,0,.5),
+    0 0 24px rgba(255,90,140,.2);
   transition:transform .4s cubic-bezier(.34,1.56,.64,1);
 }
-.photo:hover{transform:scale(1.07) rotate(0deg) !important;}
-.photo img{width:100%;height:100%;object-fit:cover;display:block;}
 
-/* Köşe konumları — tam ekranda görünür */
-.p1{top:20px; left:18px;  transform:rotate(-5deg);}
-.p2{top:20px; right:18px; transform:rotate(5deg);}
-.p3{bottom:20px;left:18px; transform:rotate(4deg);}
-.p4{bottom:20px;right:18px;transform:rotate(-4deg);}
+.photo-frame:hover{ transform:scale(1.07) !important; }
+
+.photo-frame img{
+  width:100%;height:100%;
+  object-fit:cover;display:block;
+}
+
+/* SOL ÜST */
+.orbit-1{
+  top:18px; left:18px;
+  width:min(160px, 26vw);
+  height:min(200px, 32vw);
+}
+.orbit-1 .photo-frame{ transform:rotate(-5deg); }
+
+/* SAĞ ÜST */
+.orbit-2{
+  top:18px; right:18px;
+  width:min(160px, 26vw);
+  height:min(200px, 32vw);
+}
+.orbit-2 .photo-frame{ transform:rotate(5deg); }
+
+/* SOL ALT */
+.orbit-3{
+  bottom:18px; left:18px;
+  width:min(160px, 26vw);
+  height:min(200px, 32vw);
+}
+.orbit-3 .photo-frame{ transform:rotate(4deg); }
+
+/* SAĞ ALT */
+.orbit-4{
+  bottom:18px; right:18px;
+  width:min(160px, 26vw);
+  height:min(200px, 32vw);
+}
+.orbit-4 .photo-frame{ transform:rotate(-4deg); }
 
 /* ── ORTA KART ── */
 .center{
   position:fixed;top:50%;left:50%;
   transform:translate(-50%,-50%);
-  width:min(480px, calc(100vw - 360px));
+  width:min(480px, 44vw);
   z-index:10;
 }
 
@@ -93,7 +130,8 @@ canvas{position:fixed;inset:0;pointer-events:none;z-index:2;}
 }
 
 .title{
-  font-size:2.8rem;font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem, 4vw, 2.8rem);
+  font-family:'Playfair Display',serif;
   background:linear-gradient(135deg,var(--gold),white,var(--pink2));
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;
   margin-bottom:8px;
@@ -106,12 +144,18 @@ canvas{position:fixed;inset:0;pointer-events:none;z-index:2;}
   display:flex;justify-content:center;align-items:center;
   gap:12px;margin-bottom:20px;
 }
-.names span{font-size:1.8rem;font-family:'Playfair Display',serif;}
+.names span{
+  font-size:clamp(1.3rem, 3vw, 1.8rem);
+  font-family:'Playfair Display',serif;
+}
 .line{
   width:100%;height:1px;margin:20px 0;
   background:linear-gradient(to right,transparent,rgba(255,255,255,.4),transparent);
 }
-.text{font-size:1.1rem;line-height:1.9;color:rgba(255,255,255,.9);}
+.text{
+  font-size:clamp(.82rem, 2vw, 1.1rem);
+  line-height:1.9;color:rgba(255,255,255,.9);
+}
 .hl{color:var(--pink2);}
 .sign{
   margin-top:20px;font-size:.68rem;letter-spacing:.25em;
@@ -119,46 +163,28 @@ canvas{position:fixed;inset:0;pointer-events:none;z-index:2;}
 }
 
 /* ── MOBİL ── */
-@media(max-width:700px){
-  /* Fotoğraflar üstte 4'lü şerit */
-  .photo{
-    position:static;
-    width:100%;height:100%;
-    transform:none !important;
-    border-radius:14px;
+@media(max-width:600px){
+  .orbit-1,.orbit-2,.orbit-3,.orbit-4{
+    width:28vw;
+    height:35vw;
   }
-  .photo-strip{
-    position:fixed;top:0;left:0;right:0;
-    display:flex;gap:6px;padding:8px;
-    z-index:5;
-  }
-  .photo-wrap{
-    flex:1;height:26vw;
-    border-radius:14px;overflow:hidden;
-    border:1.5px solid rgba(255,255,255,.15);
-    box-shadow:0 4px 20px rgba(0,0,0,.4);
-  }
-  .photo-wrap img{width:100%;height:100%;object-fit:cover;display:block;}
-
-  /* Masaüstü köşe fotoğrafları gizle */
-  .p1,.p2,.p3,.p4{display:none;}
-
   .center{
-    width:94vw;
-    top:calc(50% + 16px);
-    max-height:calc(100dvh - 80px);
-    overflow-y:auto;
-    -webkit-overflow-scrolling:touch;
+    width:38vw;
   }
-  .card{padding:28px 18px;border-radius:24px;}
-  .title{font-size:2rem;}
-  .text{font-size:.95rem;line-height:1.8;}
-  .names span{font-size:1.5rem;}
-  .heart{font-size:44px;}
+  .card{padding:16px 10px;border-radius:20px;}
+  .heart{font-size:30px;margin-bottom:6px;}
+  .sub,.sign{display:none;}
+  .line{margin:10px 0;}
+  .names{gap:5px;margin-bottom:10px;}
+  .text{line-height:1.6;}
 }
 
-@media(min-width:701px){
-  .photo-strip{display:none;}
+@media(max-width:380px){
+  .orbit-1,.orbit-2,.orbit-3,.orbit-4{
+    width:27vw;
+    height:33vw;
+  }
+  .center{ width:40vw; }
 }
 </style>
 </head>
@@ -166,21 +192,27 @@ canvas{position:fixed;inset:0;pointer-events:none;z-index:2;}
 
 <canvas id="particles"></canvas>
 
-<!-- Masaüstü köşe fotoğraflar -->
-<div class="photo p1"><img src="foto1.png" alt=""></div>
-<div class="photo p2"><img src="foto2.png" alt=""></div>
-<div class="photo p3"><img src="foto3.png" alt=""></div>
-<div class="photo p4"><img src="foto4.png" alt=""></div>
-
-<!-- Mobil üst şerit -->
-<div class="photo-strip">
-  <div class="photo-wrap"><img src="foto1.png" alt=""></div>
-  <div class="photo-wrap"><img src="foto2.png" alt=""></div>
-  <div class="photo-wrap"><img src="foto3.png" alt=""></div>
-  <div class="photo-wrap"><img src="foto4.png" alt=""></div>
+<!-- SOL ÜST -->
+<div class="photo-orbit orbit-1">
+  <div class="photo-frame"><img src="foto1.png" alt=""></div>
 </div>
 
-<!-- Kart -->
+<!-- SAĞ ÜST -->
+<div class="photo-orbit orbit-2">
+  <div class="photo-frame"><img src="foto2.png" alt=""></div>
+</div>
+
+<!-- SOL ALT -->
+<div class="photo-orbit orbit-3">
+  <div class="photo-frame"><img src="foto3.png" alt=""></div>
+</div>
+
+<!-- SAĞ ALT -->
+<div class="photo-orbit orbit-4">
+  <div class="photo-frame"><img src="foto4.png" alt=""></div>
+</div>
+
+<!-- KART -->
 <div class="center">
   <div class="card">
     <div class="heart">❤️</div>
@@ -256,9 +288,7 @@ addEventListener('touchstart', e => {
 function animate() {
   requestAnimationFrame(animate);
   ctx.clearRect(0, 0, w, h);
-
   pts.forEach(p => { p.update(); p.draw(); });
-
   hearts.forEach(hh => {
     ctx.save();
     ctx.globalAlpha = hh.life;
