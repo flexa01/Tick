@@ -1,1 +1,453 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FATOŞŞ ❤️</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+:root{
+  --bg:#13050d;
+  --pink:#ff4f88;
+  --pink2:#ff85ac;
+  --gold:#f0c86e;
+  --white:#fff7f0;
+}
+
+html,body{
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:var(--bg);
+  font-family:'Cormorant Garamond',serif;
+  color:white;
+}
+
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:
+  radial-gradient(circle at 20% 20%, rgba(255,70,120,.18), transparent 30%),
+  radial-gradient(circle at 80% 30%, rgba(255,180,100,.15), transparent 35%),
+  radial-gradient(circle at 50% 90%, rgba(255,40,90,.13), transparent 40%);
+  z-index:0;
+}
+
+canvas{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+}
+
+#particles{
+  z-index:2;
+}
+
+/* FOTOĞRAFLAR */
+
+.photo{
+  position:fixed;
+  width:185px;
+  height:240px;
+  border-radius:24px;
+  overflow:hidden;
+  z-index:5;
+  background:rgba(255,255,255,.04);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.1);
+  box-shadow:
+  0 15px 40px rgba(0,0,0,.45),
+  0 0 30px rgba(255,90,140,.15);
+  transition:.45s;
+}
+
+.photo:hover{
+  transform:scale(1.06) rotate(0deg) !important;
+}
+
+.photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* FOTOĞRAF KONUMLARI */
+
+.p1{
+  top:25px;
+  left:25px;
+  transform:rotate(-7deg);
+}
+
+.p2{
+  top:25px;
+  right:25px;
+  transform:rotate(7deg);
+}
+
+.p3{
+  bottom:25px;
+  left:25px;
+  transform:rotate(6deg);
+}
+
+.p4{
+  bottom:25px;
+  right:25px;
+  transform:rotate(-6deg);
+}
+
+/* MERKEZ */
+
+.center{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:min(540px,92vw);
+  z-index:10;
+}
+
+.card{
+  position:relative;
+  overflow:hidden;
+  border-radius:34px;
+  padding:44px 30px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  backdrop-filter:blur(28px);
+  text-align:center;
+  box-shadow:
+  0 20px 60px rgba(0,0,0,.45),
+  inset 0 0 80px rgba(255,80,120,.05);
+}
+
+.card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+  linear-gradient(135deg,
+  rgba(255,255,255,.05),
+  transparent 40%);
+}
+
+.heart{
+  font-size:60px;
+  margin-bottom:10px;
+  animation:beat 1.7s infinite;
+  filter:drop-shadow(0 0 18px rgba(255,70,120,.8));
+}
+
+@keyframes beat{
+  0%{transform:scale(1);}
+  15%{transform:scale(1.15);}
+  30%{transform:scale(1);}
+  45%{transform:scale(1.1);}
+  100%{transform:scale(1);}
+}
+
+.title{
+  font-size:3rem;
+  font-family:'Playfair Display',serif;
+  background:
+  linear-gradient(135deg,var(--gold),white,var(--pink2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:10px;
+}
+
+.sub{
+  color:rgba(255,255,255,.55);
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  font-size:.72rem;
+  margin-bottom:24px;
+}
+
+.names{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:15px;
+  margin-bottom:25px;
+}
+
+.names span{
+  font-size:2rem;
+  font-family:'Playfair Display',serif;
+}
+
+.line{
+  width:100%;
+  height:1px;
+  margin:24px 0;
+  background:
+  linear-gradient(to right,
+  transparent,
+  rgba(255,255,255,.45),
+  transparent);
+}
+
+.text{
+  font-size:1.2rem;
+  line-height:1.9;
+  color:rgba(255,255,255,.9);
+}
+
+.hl{
+  color:var(--pink2);
+}
+
+.sign{
+  margin-top:24px;
+  font-size:.72rem;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.35);
+}
+
+/* MOBİL */
+
+@media(max-width:700px){
+
+  .photo{
+    width:30vw;
+    height:38vw;
+  }
+
+  .p1{
+    top:10px;
+    left:8px;
+  }
+
+  .p2{
+    top:10px;
+    right:8px;
+  }
+
+  .p3{
+    bottom:10px;
+    left:8px;
+  }
+
+  .p4{
+    bottom:10px;
+    right:8px;
+  }
+
+  .title{
+    font-size:2.3rem;
+  }
+
+  .text{
+    font-size:1rem;
+  }
+
+  .card{
+    padding:34px 22px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<!-- FOTOĞRAFLAR -->
+
+<div class="photo p1">
+  <img src="foto1.png">
+</div>
+
+<div class="photo p2">
+  <img src="foto2.png">
+</div>
+
+<div class="photo p3">
+  <img src="foto3.png">
+</div>
+
+<div class="photo p4">
+  <img src="foto4.png">
+</div>
+
+<!-- ORTA KART -->
+
+<div class="center">
+
+  <div class="card">
+
+    <div class="heart">❤️</div>
+
+    <div class="title">
+      FATOŞŞ
+    </div>
+
+    <div class="sub">
+      forever & always
+    </div>
+
+    <div class="names">
+      <span>FATO</span>
+      <span>❤️</span>
+      <span>MAMİ</span>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="text">
+
+      Bir bakışınla başlar içimdeki mevsimler,<br>
+      Adın yankılanır sessizliğin içinde.<br>
+      Zaman durur, solar gider resimler,<br>
+      Dünya sadece <span class="hl">senin sevginin renginde.</span><br><br>
+
+      Gönlümde bitmeyen bir baharsın şimdi,<br>
+      En derin yarama şifalı bir dokunuş.<br>
+      Aşk dediğin meğer sadece sendi,<br>
+      Ruhumun sende bulduğu <span class="hl">o sonsuz huzur.</span>
+
+    </div>
+
+    <div class="sign">
+      ✦ MAMİ TARAFINDAN FATO'YA ✦
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+const canvas=document.getElementById('particles');
+const ctx=canvas.getContext('2d');
+
+let w,h;
+
+function resize(){
+  w=canvas.width=innerWidth;
+  h=canvas.height=innerHeight;
+}
+
+resize();
+
+addEventListener('resize',resize);
+
+class Particle{
+
+  constructor(){
+    this.reset();
+  }
+
+  reset(){
+    this.x=Math.random()*w;
+    this.y=Math.random()*h;
+    this.r=Math.random()*2.5+.5;
+    this.a=Math.random()*.6+.2;
+    this.vy=Math.random()*-.7-.2;
+  }
+
+  update(){
+
+    this.y+=this.vy;
+
+    if(this.y<-10){
+      this.y=h+10;
+      this.x=Math.random()*w;
+    }
+
+  }
+
+  draw(){
+
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(255,255,255,${this.a})`;
+    ctx.fill();
+
+  }
+
+}
+
+const particles=[];
+
+for(let i=0;i<130;i++){
+  particles.push(new Particle());
+}
+
+let hearts=[];
+
+function spawnHearts(x,y){
+
+  for(let i=0;i<8;i++){
+
+    hearts.push({
+      x:x,
+      y:y,
+      vx:(Math.random()-.5)*3,
+      vy:-(Math.random()*3+2),
+      life:1,
+      size:Math.random()*20+10
+    });
+
+  }
+
+}
+
+addEventListener('click',e=>{
+  spawnHearts(e.clientX,e.clientY);
+});
+
+addEventListener('touchstart',e=>{
+  const t=e.touches[0];
+  spawnHearts(t.clientX,t.clientY);
+},{passive:true});
+
+function animate(){
+
+  requestAnimationFrame(animate);
+
+  ctx.clearRect(0,0,w,h);
+
+  particles.forEach(p=>{
+    p.update();
+    p.draw();
+  });
+
+  hearts.forEach(hh=>{
+
+    ctx.globalAlpha=hh.life;
+    ctx.font=`${hh.size}px serif`;
+    ctx.fillText('💗',hh.x,hh.y);
+
+    hh.x+=hh.vx;
+    hh.y+=hh.vy;
+    hh.life-=0.02;
+
+  });
+
+  hearts=hearts.filter(hh=>hh.life>0);
+
+}
+
+animate();
+
+</script>
+
+</body>
+</html>
