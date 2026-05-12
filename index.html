@@ -2,13 +2,12 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FATOŞŞ ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ADOŞŞ ❤️</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-
 *{
   margin:0;
   padding:0;
@@ -16,7 +15,7 @@
 }
 
 :root{
-  --bg:#13050d;
+  --bg:#2d0202; /* Şarap Kırmızısı Arka Plan */
   --pink:#ff4f88;
   --pink2:#ff85ac;
   --gold:#f0c86e;
@@ -47,32 +46,22 @@ canvas{
   position:fixed;
   inset:0;
   pointer-events:none;
+  z-index:1;
 }
 
-#particles{
-  z-index:2;
-}
-
-/* FOTOĞRAFLAR */
-
+/* FOTOĞRAFLAR - Katman ve Netlik Ayarı */
 .photo{
   position:fixed;
   width:185px;
   height:240px;
   border-radius:24px;
   overflow:hidden;
-  z-index:5;
+  z-index:2; /* Yazı kartının (10) altında kalması için düşük tutuldu */
   background:rgba(255,255,255,.04);
   backdrop-filter:blur(10px);
   border:1px solid rgba(255,255,255,.1);
-  box-shadow:
-  0 15px 40px rgba(0,0,0,.45),
-  0 0 30px rgba(255,90,140,.15);
+  box-shadow: 0 15px 40px rgba(0,0,0,.45);
   transition:.45s;
-}
-
-.photo:hover{
-  transform:scale(1.06) rotate(0deg) !important;
 }
 
 .photo img{
@@ -80,43 +69,23 @@ canvas{
   height:100%;
   object-fit:cover;
   display:block;
+  image-rendering: auto;
 }
 
 /* FOTOĞRAF KONUMLARI */
+.p1{ top:25px; left:25px; transform:rotate(-7deg); }
+.p2{ top:25px; right:25px; transform:rotate(7deg); }
+.p3{ bottom:25px; left:25px; transform:rotate(6deg); }
+.p4{ bottom:25px; right:25px; transform:rotate(-6deg); }
 
-.p1{
-  top:25px;
-  left:25px;
-  transform:rotate(-7deg);
-}
-
-.p2{
-  top:25px;
-  right:25px;
-  transform:rotate(7deg);
-}
-
-.p3{
-  bottom:25px;
-  left:25px;
-  transform:rotate(6deg);
-}
-
-.p4{
-  bottom:25px;
-  right:25px;
-  transform:rotate(-6deg);
-}
-
-/* MERKEZ */
-
+/* MERKEZ KART - En Üst Katman */
 .center{
   position:fixed;
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
-  width:min(540px,92vw);
-  z-index:10;
+  width:min(540px, 92vw);
+  z-index:10; /* Fotoğrafların üstüne çıkması için en yüksek değer */
 }
 
 .card{
@@ -124,23 +93,12 @@ canvas{
   overflow:hidden;
   border-radius:34px;
   padding:44px 30px;
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.08);
-  backdrop-filter:blur(28px);
+  background:rgba(0, 0, 0, 0.4); /* Mobilde okunurluk için hafif karartıldı */
+  border:1px solid rgba(255,255,255,0.15);
+  backdrop-filter:blur(30px);
+  -webkit-backdrop-filter:blur(30px);
   text-align:center;
-  box-shadow:
-  0 20px 60px rgba(0,0,0,.45),
-  inset 0 0 80px rgba(255,80,120,.05);
-}
-
-.card::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:
-  linear-gradient(135deg,
-  rgba(255,255,255,.05),
-  transparent 40%);
+  box-shadow: 0 20px 60px rgba(0,0,0,.6);
 }
 
 .heart{
@@ -161,19 +119,10 @@ canvas{
 .title{
   font-size:3rem;
   font-family:'Playfair Display',serif;
-  background:
-  linear-gradient(135deg,var(--gold),white,var(--pink2));
+  background: linear-gradient(135deg,var(--gold),white,var(--pink2));
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   margin-bottom:10px;
-}
-
-.sub{
-  color:rgba(255,255,255,.55);
-  letter-spacing:.25em;
-  text-transform:uppercase;
-  font-size:.72rem;
-  margin-bottom:24px;
 }
 
 .names{
@@ -182,22 +131,15 @@ canvas{
   align-items:center;
   gap:15px;
   margin-bottom:25px;
-}
-
-.names span{
-  font-size:2rem;
   font-family:'Playfair Display',serif;
+  font-size: 1.8rem;
 }
 
 .line{
   width:100%;
   height:1px;
   margin:24px 0;
-  background:
-  linear-gradient(to right,
-  transparent,
-  rgba(255,255,255,.45),
-  transparent);
+  background: linear-gradient(to right, transparent, rgba(255,255,255,.45), transparent);
 }
 
 .text{
@@ -206,61 +148,26 @@ canvas{
   color:rgba(255,255,255,.9);
 }
 
-.hl{
-  color:var(--pink2);
-}
+.hl{ color:var(--pink2); font-weight: bold; }
 
-.sign{
-  margin-top:24px;
-  font-size:.72rem;
-  letter-spacing:.25em;
-  text-transform:uppercase;
-  color:rgba(255,255,255,.35);
-}
-
-/* MOBİL */
-
+/* MOBİL DÜZENLEME - Çakışmayı Önleyen Kısım */
 @media(max-width:700px){
-
   .photo{
-    width:30vw;
-    height:38vw;
+    width:28vw; /* Biraz küçültüldü */
+    height:36vw;
+    z-index: 1; /* Kesinlikle kartın altında kalacak */
   }
 
-  .p1{
-    top:10px;
-    left:8px;
-  }
+  /* Mobilde fotoları iyice köşelere itiyoruz */
+  .p1{ top:10px; left:5px; }
+  .p2{ top:10px; right:5px; }
+  .p3{ bottom:10px; left:5px; }
+  .p4{ bottom:10px; right:5px; }
 
-  .p2{
-    top:10px;
-    right:8px;
-  }
-
-  .p3{
-    bottom:10px;
-    left:8px;
-  }
-
-  .p4{
-    bottom:10px;
-    right:8px;
-  }
-
-  .title{
-    font-size:2.3rem;
-  }
-
-  .text{
-    font-size:1rem;
-  }
-
-  .card{
-    padding:34px 22px;
-  }
-
+  .title{ font-size:2.2rem; }
+  .text{ font-size:1rem; line-height: 1.6; }
+  .card{ padding:30px 15px; }
 }
-
 </style>
 </head>
 
@@ -268,92 +175,47 @@ canvas{
 
 <canvas id="particles"></canvas>
 
-<!-- FOTOĞRAFLAR -->
-
-<div class="photo p1">
-  <img src="foto1.png">
-</div>
-
-<div class="photo p2">
-  <img src="foto2.png">
-</div>
-
-<div class="photo p3">
-  <img src="foto3.png">
-</div>
-
-<div class="photo p4">
-  <img src="foto4.png">
-</div>
-
-<!-- ORTA KART -->
+<div class="photo p1"><img src="foto1.png"></div>
+<div class="photo p2"><img src="foto2.png"></div>
+<div class="photo p3"><img src="foto3.png"></div>
+<div class="photo p4"><img src="foto4.png"></div>
 
 <div class="center">
-
   <div class="card">
-
     <div class="heart">❤️</div>
-
-    <div class="title">
-      FATOŞŞ
-    </div>
-
-    <div class="sub">
-      forever & always
-    </div>
-
+    <div class="title">ADOŞŞ</div>
     <div class="names">
-      <span>FATO</span>
+      <span>ONUR</span>
       <span>❤️</span>
-      <span>MAMİ</span>
+      <span>ADA</span>
     </div>
-
     <div class="line"></div>
-
     <div class="text">
-
-      Bir bakışınla başlar içimdeki mevsimler,<br>
-      Adın yankılanır sessizliğin içinde.<br>
-      Zaman durur, solar gider resimler,<br>
-      Dünya sadece <span class="hl">senin sevginin renginde.</span><br><br>
-
-      Gönlümde bitmeyen bir baharsın şimdi,<br>
-      En derin yarama şifalı bir dokunuş.<br>
-      Aşk dediğin meğer sadece sendi,<br>
-      Ruhumun sende bulduğu <span class="hl">o sonsuz huzur.</span>
-
+      Sen benim en derin duygum, en güzel gerçeğimsin.<br>
+      Gözlerinle ruhuma dokunduğun her an, dünyanın bütün anlamı <span class="hl">sende toplanıyor.</span><br><br>
+      Yanında olmak, seni sevmek...<br>
+      Bu hayattaki <span class="hl">en büyük şansım.</span>
     </div>
-
-    <div class="sign">
-      ✦ MAMİ TARAFINDAN FATO'YA ✦
+    <div style="margin-top:25px; font-size:.7rem; letter-spacing:.3em; color:rgba(255,255,255,.3);">
+      ✦ SENİ ÇOK SEVİYORUM ✦
     </div>
-
   </div>
-
 </div>
 
 <script>
-
 const canvas=document.getElementById('particles');
 const ctx=canvas.getContext('2d');
-
 let w,h;
 
 function resize(){
   w=canvas.width=innerWidth;
   h=canvas.height=innerHeight;
 }
-
 resize();
-
 addEventListener('resize',resize);
 
 class Particle{
-
-  constructor(){
-    this.reset();
-  }
-
+  constructor(){ this.reset(); }
   reset(){
     this.x=Math.random()*w;
     this.y=Math.random()*h;
@@ -361,93 +223,57 @@ class Particle{
     this.a=Math.random()*.6+.2;
     this.vy=Math.random()*-.7-.2;
   }
-
   update(){
-
     this.y+=this.vy;
-
     if(this.y<-10){
       this.y=h+10;
       this.x=Math.random()*w;
     }
-
   }
-
   draw(){
-
     ctx.beginPath();
     ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
     ctx.fillStyle=`rgba(255,255,255,${this.a})`;
     ctx.fill();
-
   }
-
 }
 
 const particles=[];
-
-for(let i=0;i<130;i++){
-  particles.push(new Particle());
-}
+for(let i=0;i<130;i++){ particles.push(new Particle()); }
 
 let hearts=[];
-
 function spawnHearts(x,y){
-
   for(let i=0;i<8;i++){
-
     hearts.push({
-      x:x,
-      y:y,
-      vx:(Math.random()-.5)*3,
+      x:x, y:y,
+      vx:(Math.random()-.5)*4,
       vy:-(Math.random()*3+2),
       life:1,
-      size:Math.random()*20+10
+      size:Math.random()*20+15
     });
-
   }
-
 }
 
-addEventListener('click',e=>{
-  spawnHearts(e.clientX,e.clientY);
-});
-
+addEventListener('mousedown',e=>spawnHearts(e.clientX,e.clientY));
 addEventListener('touchstart',e=>{
-  const t=e.touches[0];
-  spawnHearts(t.clientX,t.clientY);
+  spawnHearts(e.touches[0].clientX,e.touches[0].clientY);
 },{passive:true});
 
 function animate(){
-
   requestAnimationFrame(animate);
-
   ctx.clearRect(0,0,w,h);
-
-  particles.forEach(p=>{
-    p.update();
-    p.draw();
-  });
-
-  hearts.forEach(hh=>{
-
+  particles.forEach(p=>{ p.update(); p.draw(); });
+  hearts.forEach((hh, i)=>{
     ctx.globalAlpha=hh.life;
     ctx.font=`${hh.size}px serif`;
     ctx.fillText('💗',hh.x,hh.y);
-
     hh.x+=hh.vx;
     hh.y+=hh.vy;
     hh.life-=0.02;
-
+    if(hh.life<=0) hearts.splice(i,1);
   });
-
-  hearts=hearts.filter(hh=>hh.life>0);
-
 }
-
 animate();
-
 </script>
-
 </body>
 </html>
