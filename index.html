@@ -20,7 +20,6 @@
   --pink:#ff4f88;
   --pink2:#ff85ac;
   --gold:#f0c86e;
-  --white:#fff7f0;
 }
 
 html,body{
@@ -31,6 +30,8 @@ html,body{
   font-family:'Cormorant Garamond',serif;
   color:white;
 }
+
+/* BACKGROUND */
 
 body::before{
   content:'';
@@ -57,22 +58,22 @@ canvas{
 
 .photo{
   position:fixed;
-  width:185px;
-  height:240px;
+  width:180px;
+  height:230px;
   border-radius:24px;
   overflow:hidden;
-  z-index:5;
-  background:rgba(255,255,255,.04);
-  backdrop-filter:blur(10px);
+  z-index:3;
+  background:rgba(255,255,255,.05);
   border:1px solid rgba(255,255,255,.1);
+  backdrop-filter:blur(8px);
   box-shadow:
-  0 15px 40px rgba(0,0,0,.45),
-  0 0 30px rgba(255,90,140,.15);
-  transition:.45s;
+  0 10px 40px rgba(0,0,0,.4),
+  0 0 25px rgba(255,90,140,.15);
+  transition:.4s;
 }
 
 .photo:hover{
-  transform:scale(1.06) rotate(0deg) !important;
+  transform:scale(1.05) rotate(0deg) !important;
 }
 
 .photo img{
@@ -85,30 +86,30 @@ canvas{
 /* FOTOĞRAF KONUMLARI */
 
 .p1{
-  top:25px;
-  left:25px;
-  transform:rotate(-7deg);
+  top:20px;
+  left:-35px;
+  transform:rotate(-8deg);
 }
 
 .p2{
-  top:25px;
-  right:25px;
-  transform:rotate(7deg);
+  top:20px;
+  right:-35px;
+  transform:rotate(8deg);
 }
 
 .p3{
-  bottom:25px;
-  left:25px;
-  transform:rotate(6deg);
+  bottom:20px;
+  left:-35px;
+  transform:rotate(7deg);
 }
 
 .p4{
-  bottom:25px;
-  right:25px;
-  transform:rotate(-6deg);
+  bottom:20px;
+  right:-35px;
+  transform:rotate(-7deg);
 }
 
-/* MERKEZ */
+/* ORTA KART */
 
 .center{
   position:fixed;
@@ -126,7 +127,7 @@ canvas{
   padding:44px 30px;
   background:rgba(255,255,255,.05);
   border:1px solid rgba(255,255,255,.08);
-  backdrop-filter:blur(28px);
+  backdrop-filter:blur(30px);
   text-align:center;
   box-shadow:
   0 20px 60px rgba(0,0,0,.45),
@@ -203,7 +204,7 @@ canvas{
 .text{
   font-size:1.2rem;
   line-height:1.9;
-  color:rgba(255,255,255,.9);
+  color:rgba(255,255,255,.92);
 }
 
 .hl{
@@ -223,28 +224,38 @@ canvas{
 @media(max-width:700px){
 
   .photo{
-    width:30vw;
-    height:38vw;
+    width:28vw;
+    height:34vw;
+    z-index:1;
   }
 
   .p1{
-    top:10px;
-    left:8px;
+    top:14px;
+    left:-20px;
   }
 
   .p2{
-    top:10px;
-    right:8px;
+    top:14px;
+    right:-20px;
   }
 
   .p3{
-    bottom:10px;
-    left:8px;
+    bottom:14px;
+    left:-20px;
   }
 
   .p4{
-    bottom:10px;
-    right:8px;
+    bottom:14px;
+    right:-20px;
+  }
+
+  .center{
+    width:90vw;
+  }
+
+  .card{
+    padding:32px 20px;
+    border-radius:28px;
   }
 
   .title{
@@ -253,10 +264,11 @@ canvas{
 
   .text{
     font-size:1rem;
+    line-height:1.8;
   }
 
-  .card{
-    padding:34px 22px;
+  .names span{
+    font-size:1.6rem;
   }
 
 }
@@ -286,7 +298,7 @@ canvas{
   <img src="foto4.png">
 </div>
 
-<!-- ORTA KART -->
+<!-- ORTA -->
 
 <div class="center">
 
@@ -345,7 +357,6 @@ function resize(){
 }
 
 resize();
-
 addEventListener('resize',resize);
 
 class Particle{
